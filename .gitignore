@@ -32,6 +32,7 @@ out
 *.ipr
 *.iws
 *.iml
+.factorypath
 atlassian-ide-plugin.xml
 
 # Eclipse specific files/directories
