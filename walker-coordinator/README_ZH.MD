@@ -30,6 +30,3 @@ walker 是由我个人开发维护的一个基于 蚂蚁金服CTO程立 10年前
 ### 更多
 
    walker 以及其他技术请关注：
-
-### 最后
-   这份文档的模板来自[Qihoo360 Atlas](https://github.com/Qihoo360/Atlas/edit/master/README_ZH.md)
