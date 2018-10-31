@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:sharding="http://shardingsphere.io/schema/shardingsphere/sharding"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd
+                        http://shardingsphere.io/schema/shardingsphere/sharding 
+                        http://shardingsphere.io/schema/shardingsphere/sharding/sharding.xsd">
+
+    <context:property-placeholder location="classpath:properties/sharding-jdbc-ds.properties"/><!-- 加载配置文件 -->
+
+    <!-- <context:component-scan base-package="com.sharding.demo" /> -->
+
+    <!-- 配置数据来源 一 -->
+    <bean id="separate_entity_0" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="${sharding.jdbc.datasource.walker_coordinator_0.url}"/>
+        <property name="username" value="${sharding.jdbc.datasource.walker_coordinator_0.username}"/>
+        <property name="password" value="${sharding.jdbc.datasource.walker_coordinator_0.password}"/>
+        <property name="maximumPoolSize" value="10"/>
+    </bean>
+    <!-- 配置数据来源 二 -->
+    <bean id="separate_entity_1" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="jdbcUrl" value="${sharding.jdbc.datasource.walker_coordinator_1.url}"/>
+        <property name="username" value="${sharding.jdbc.datasource.walker_coordinator_1.username}"/>
+        <property name="password" value="${sharding.jdbc.datasource.walker_coordinator_1.password}"/>
+    </bean>
+
+    <!-- 可能不同的业务表有不同的业务规则，会出现好多个分库，分表策略-->
+    <bean id="preciseModuloDatabaseShardingAlgorithm"
+          class="walker.application.coordinator.config.algorithm.DatabaseShardingAlgorithm"/>
+    <bean id="preciseTransactionModuloTableShardingAlgorithm"
+          class="walker.application.coordinator.config.algorithm.TransactionTableShardingAlgorithm"/>
+    <bean id="preciseNotifyModuloTableShardingAlgorithm"
+          class="walker.application.coordinator.config.algorithm.TransactionTableShardingAlgorithm"/>
+
+    <!-- 可能不同的业务表有不同的业务规则，会出现好多个分库，分表策略，这块指定了-->
+    <sharding:standard-strategy id="databaseShardingStrategy" sharding-column="master_gid"
+                                precise-algorithm-ref="preciseModuloDatabaseShardingAlgorithm"/>
+    <sharding:standard-strategy id="transactionTableShardingStrategy" sharding-column="master_gid"
+                                precise-algorithm-ref="preciseTransactionModuloTableShardingAlgorithm"/>
+    <sharding:standard-strategy id="notifyTableShardingStrategy" sharding-column="branch_gid"
+                                precise-algorithm-ref="preciseNotifyModuloTableShardingAlgorithm"/>
+
+    <sharding:data-source id="shardingDataSource">
+        <sharding:sharding-rule data-source-names="walker_coordinator_0,walker_coordinator_1">
+            <sharding:table-rules>
+                <sharding:table-rule logic-table="walker_transaction"
+                                     actual-data-nodes="${sharding.jdbc.datasource.actual.data.nodes.transaction}"
+                                     database-strategy-ref="databaseShardingStrategy"
+                                     table-strategy-ref="transactionTableShardingStrategy"
+                                     generate-key-column-name="id"/>
+
+                <sharding:table-rule logic-table="walker_notify"
+                                     actual-data-nodes="${sharding.jdbc.datasource.actual.data.nodes.notify}"
+                                     database-strategy-ref="databaseShardingStrategy"
+                                     table-strategy-ref="notifyTableShardingStrategy"
+                                     generate-key-column-name="id"/>
+            </sharding:table-rules>
+        </sharding:sharding-rule>
+    </sharding:data-source>
+
+    <!-- 事务配置 -->
+    <bean id="walkerTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="shardingDataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="walkerTransactionManager"/>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="shardingDataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/walker/application/coordinator/*.xml"/>
+    </bean>
+
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.sharding.demo"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
+
+</beans>

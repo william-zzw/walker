@@ -1,4 +1,4 @@
-package walker.application.notify.entity;
+package walker.application.coordinator.entity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -584,6 +584,66 @@ public class WalkerNotifyExample {
             return (Criteria) this;
         }
 
+        public Criteria andNotifyTypeIsNull() {
+            addCriterion("notify_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeIsNotNull() {
+            addCriterion("notify_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeEqualTo(Integer value) {
+            addCriterion("notify_type =", value, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeNotEqualTo(Integer value) {
+            addCriterion("notify_type <>", value, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeGreaterThan(Integer value) {
+            addCriterion("notify_type >", value, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("notify_type >=", value, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeLessThan(Integer value) {
+            addCriterion("notify_type <", value, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("notify_type <=", value, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeIn(List<Integer> values) {
+            addCriterion("notify_type in", values, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeNotIn(List<Integer> values) {
+            addCriterion("notify_type not in", values, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeBetween(Integer value1, Integer value2) {
+            addCriterion("notify_type between", value1, value2, "notifyType");
+            return (Criteria) this;
+        }
+
+        public Criteria andNotifyTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("notify_type not between", value1, value2, "notifyType");
+            return (Criteria) this;
+        }
+
         public Criteria andNotifyUrlIsNull() {
             addCriterion("notify_url is null");
             return (Criteria) this;
@@ -784,66 +844,6 @@ public class WalkerNotifyExample {
             return (Criteria) this;
         }
 
-        public Criteria andRecordStatusIsNull() {
-            addCriterion("record_status is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusIsNotNull() {
-            addCriterion("record_status is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusEqualTo(Integer value) {
-            addCriterion("record_status =", value, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusNotEqualTo(Integer value) {
-            addCriterion("record_status <>", value, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusGreaterThan(Integer value) {
-            addCriterion("record_status >", value, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("record_status >=", value, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusLessThan(Integer value) {
-            addCriterion("record_status <", value, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("record_status <=", value, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusIn(List<Integer> values) {
-            addCriterion("record_status in", values, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusNotIn(List<Integer> values) {
-            addCriterion("record_status not in", values, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusBetween(Integer value1, Integer value2) {
-            addCriterion("record_status between", value1, value2, "recordStatus");
-            return (Criteria) this;
-        }
-
-        public Criteria andRecordStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("record_status not between", value1, value2, "recordStatus");
-            return (Criteria) this;
-        }
-
         public Criteria andRetryNumIsNull() {
             addCriterion("retry_num is null");
             return (Criteria) this;
@@ -914,52 +914,52 @@ public class WalkerNotifyExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedEqualTo(Integer value) {
+        public Criteria andIsDeletedEqualTo(Boolean value) {
             addCriterion("is_deleted =", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotEqualTo(Integer value) {
+        public Criteria andIsDeletedNotEqualTo(Boolean value) {
             addCriterion("is_deleted <>", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThan(Integer value) {
+        public Criteria andIsDeletedGreaterThan(Boolean value) {
             addCriterion("is_deleted >", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIsDeletedGreaterThanOrEqualTo(Boolean value) {
             addCriterion("is_deleted >=", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThan(Integer value) {
+        public Criteria andIsDeletedLessThan(Boolean value) {
             addCriterion("is_deleted <", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThanOrEqualTo(Integer value) {
+        public Criteria andIsDeletedLessThanOrEqualTo(Boolean value) {
             addCriterion("is_deleted <=", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedIn(List<Integer> values) {
+        public Criteria andIsDeletedIn(List<Boolean> values) {
             addCriterion("is_deleted in", values, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotIn(List<Integer> values) {
+        public Criteria andIsDeletedNotIn(List<Boolean> values) {
             addCriterion("is_deleted not in", values, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedBetween(Integer value1, Integer value2) {
+        public Criteria andIsDeletedBetween(Boolean value1, Boolean value2) {
             addCriterion("is_deleted between", value1, value2, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotBetween(Integer value1, Integer value2) {
+        public Criteria andIsDeletedNotBetween(Boolean value1, Boolean value2) {
             addCriterion("is_deleted not between", value1, value2, "isDeleted");
             return (Criteria) this;
         }
