@@ -7,7 +7,8 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 public class CompensateMethodAccessor {
 
-    private CompensateMethodAccessor() {}
+    private CompensateMethodAccessor() {
+    }
 
     private static class MethodAccessCacheHolder {
         private static CompensateMethodAccessor instance = new CompensateMethodAccessor();
@@ -18,7 +19,7 @@ public class CompensateMethodAccessor {
     }
 
     private ConcurrentHashMap<Class<?>, MethodAccess> methodAccessCache =
-        new ConcurrentHashMap<Class<?>, MethodAccess>();
+            new ConcurrentHashMap<Class<?>, MethodAccess>();
 
     private ReentrantReadWriteLock multiReadOneWrite = new ReentrantReadWriteLock();
 

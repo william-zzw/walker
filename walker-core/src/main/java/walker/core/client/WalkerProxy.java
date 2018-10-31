@@ -29,7 +29,7 @@ public class WalkerProxy {
     private static final String ROUTE_TO_REPORT_COMPENSATE_KEY = "ROUTE_TO_REPORT_COMPENSATE";
 
 
-    private String appId(){
+    private String appId() {
         return walkerProxyProperties.getAppId();
     }
 

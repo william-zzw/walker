@@ -37,7 +37,7 @@ public class TccTransactionContextAspect {
         if (StringUtils.isEmpty(walkerContext.getMasterGid())) {
             WalkerContextlManager.startMaster();
             declare = true;
-        }else {
+        } else {
             WalkerContextlManager.startBranch();
         }
         walkerProxy.transactionStart(WalkerContextlManager.getContext(), declare);
@@ -63,7 +63,7 @@ public class TccTransactionContextAspect {
     }
 
     @AfterThrowing(value = "tccTransactionContextPointcut()", throwing = "e")
-    public void doAfterThrowing(JoinPoint point,Throwable e) throws Throwable {
+    public void doAfterThrowing(JoinPoint point, Throwable e) throws Throwable {
         log.info("ERROR ,point:{}", endpoint(point));
         log.error("process abort", e);
 

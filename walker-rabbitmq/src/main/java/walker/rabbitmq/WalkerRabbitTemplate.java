@@ -12,11 +12,11 @@ import java.util.UUID;
 
 /**
  * example
- WalkerMessage walkerMessage = WalkerMessageUtils.toWalkerMessage(RouteToDemoCommand.SIMPLE, command);
- rabbitSender.send(RabbitConst.ROUTE_TO_DEMO, walkerMessage);
+ * WalkerMessage walkerMessage = WalkerMessageUtils.toWalkerMessage(RouteToDemoCommand.SIMPLE, command);
+ * rabbitSender.send(RabbitConst.ROUTE_TO_DEMO, walkerMessage);
  */
 @Component("walkerRabbitTemplate")
-public class WalkerRabbitTemplate implements RabbitTemplate.ConfirmCallback{
+public class WalkerRabbitTemplate implements RabbitTemplate.ConfirmCallback {
 
     @Autowired
     @Qualifier("rabbitTemplate")

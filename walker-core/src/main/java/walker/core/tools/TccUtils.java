@@ -1,5 +1,5 @@
- package walker.core.tools;
+package walker.core.tools;
 
- public class TccUtils {
+public class TccUtils {
 
 }

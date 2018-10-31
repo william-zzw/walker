@@ -18,11 +18,11 @@ public class WalkerMessageUtils {
         return new WalkerMessage(command, payload);
     }
 
-    public static <T> T toCommand(WalkerMessage message,  Class<T> t) {
+    public static <T> T toCommand(WalkerMessage message, Class<T> t) {
         return walker.protocol.util.GsonUtils.fromJson(message.getPayload(), t);
     }
 
-    public static Message toRabbitTccMessage(WalkerMessage msg)  {
+    public static Message toRabbitTccMessage(WalkerMessage msg) {
         Message message = null;
         try {
             message = MessageBuilder.withBody(GsonUtils.getGson().toJson(msg).getBytes("UTF-8")).build();

@@ -41,6 +41,7 @@ public class MessageListenerContainerController {
 
     /**
      * 重置消息队列并发消费者数量
+     *
      * @param queueName
      * @param concurrentConsumers must greater than zero
      * @return
@@ -58,6 +59,7 @@ public class MessageListenerContainerController {
 
     /**
      * 重启对消息队列的监听
+     *
      * @param queueName
      * @return
      */
@@ -70,6 +72,7 @@ public class MessageListenerContainerController {
 
     /**
      * 停止对消息队列的监听
+     *
      * @param queueName
      * @return
      */
@@ -82,6 +85,7 @@ public class MessageListenerContainerController {
 
     /**
      * 统计所有消息队列详情
+     *
      * @return
      */
     public List<MessageQueueInfo> statAllMessageQueueDetail() {
@@ -98,6 +102,7 @@ public class MessageListenerContainerController {
 
     /**
      * 根据队列名查找消息监听容器
+     *
      * @param queueName
      * @return
      */
@@ -127,6 +132,7 @@ public class MessageListenerContainerController {
 
     /**
      * 消息队列详情
+     *
      * @author liuzhe
      * @date 2018/04/04
      */

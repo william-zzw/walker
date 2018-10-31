@@ -102,7 +102,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.id
      *
      * @return the value of walker_notify.id
-     *
      * @mbggenerated
      */
     public Long getId() {
@@ -114,7 +113,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.id
      *
      * @param id the value for walker_notify.id
-     *
      * @mbggenerated
      */
     public void setId(Long id) {
@@ -126,7 +124,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.gmt_create
      *
      * @return the value of walker_notify.gmt_create
-     *
      * @mbggenerated
      */
     public Integer getGmtCreate() {
@@ -138,7 +135,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.gmt_create
      *
      * @param gmtCreate the value for walker_notify.gmt_create
-     *
      * @mbggenerated
      */
     public void setGmtCreate(Integer gmtCreate) {
@@ -150,7 +146,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.gmt_modified
      *
      * @return the value of walker_notify.gmt_modified
-     *
      * @mbggenerated
      */
     public Integer getGmtModified() {
@@ -162,7 +157,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.gmt_modified
      *
      * @param gmtModified the value for walker_notify.gmt_modified
-     *
      * @mbggenerated
      */
     public void setGmtModified(Integer gmtModified) {
@@ -174,7 +168,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.app_id
      *
      * @return the value of walker_notify.app_id
-     *
      * @mbggenerated
      */
     public String getAppId() {
@@ -186,7 +179,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.app_id
      *
      * @param appId the value for walker_notify.app_id
-     *
      * @mbggenerated
      */
     public void setAppId(String appId) {
@@ -198,7 +190,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.master_gid
      *
      * @return the value of walker_notify.master_gid
-     *
      * @mbggenerated
      */
     public String getMasterGid() {
@@ -210,7 +201,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.master_gid
      *
      * @param masterGid the value for walker_notify.master_gid
-     *
      * @mbggenerated
      */
     public void setMasterGid(String masterGid) {
@@ -222,7 +212,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.branch_gid
      *
      * @return the value of walker_notify.branch_gid
-     *
      * @mbggenerated
      */
     public String getBranchGid() {
@@ -234,7 +223,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.branch_gid
      *
      * @param branchGid the value for walker_notify.branch_gid
-     *
      * @mbggenerated
      */
     public void setBranchGid(String branchGid) {
@@ -246,7 +234,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.notify_url
      *
      * @return the value of walker_notify.notify_url
-     *
      * @mbggenerated
      */
     public String getNotifyUrl() {
@@ -258,7 +245,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.notify_url
      *
      * @param notifyUrl the value for walker_notify.notify_url
-     *
      * @mbggenerated
      */
     public void setNotifyUrl(String notifyUrl) {
@@ -270,7 +256,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.notify_body
      *
      * @return the value of walker_notify.notify_body
-     *
      * @mbggenerated
      */
     public String getNotifyBody() {
@@ -282,7 +267,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.notify_body
      *
      * @param notifyBody the value for walker_notify.notify_body
-     *
      * @mbggenerated
      */
     public void setNotifyBody(String notifyBody) {
@@ -294,7 +278,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.notify_status
      *
      * @return the value of walker_notify.notify_status
-     *
      * @mbggenerated
      */
     public Integer getNotifyStatus() {
@@ -306,7 +289,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.notify_status
      *
      * @param notifyStatus the value for walker_notify.notify_status
-     *
      * @mbggenerated
      */
     public void setNotifyStatus(Integer notifyStatus) {
@@ -318,7 +300,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.record_status
      *
      * @return the value of walker_notify.record_status
-     *
      * @mbggenerated
      */
     public Integer getRecordStatus() {
@@ -330,7 +311,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.record_status
      *
      * @param recordStatus the value for walker_notify.record_status
-     *
      * @mbggenerated
      */
     public void setRecordStatus(Integer recordStatus) {
@@ -342,7 +322,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.retry_num
      *
      * @return the value of walker_notify.retry_num
-     *
      * @mbggenerated
      */
     public Integer getRetryNum() {
@@ -354,7 +333,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.retry_num
      *
      * @param retryNum the value for walker_notify.retry_num
-     *
      * @mbggenerated
      */
     public void setRetryNum(Integer retryNum) {
@@ -366,7 +344,6 @@ public class WalkerNotify {
      * This method returns the value of the database column walker_notify.is_deleted
      *
      * @return the value of walker_notify.is_deleted
-     *
      * @mbggenerated
      */
     public Integer getIsDeleted() {
@@ -378,7 +355,6 @@ public class WalkerNotify {
      * This method sets the value of the database column walker_notify.is_deleted
      *
      * @param isDeleted the value for walker_notify.is_deleted
-     *
      * @mbggenerated
      */
     public void setIsDeleted(Integer isDeleted) {

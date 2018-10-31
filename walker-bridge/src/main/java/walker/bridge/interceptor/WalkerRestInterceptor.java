@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @Component
-@Order(value = Ordered.LOWEST_PRECEDENCE-1)
+@Order(value = Ordered.LOWEST_PRECEDENCE - 1)
 public class WalkerRestInterceptor implements HandlerInterceptor {
 
     @Override

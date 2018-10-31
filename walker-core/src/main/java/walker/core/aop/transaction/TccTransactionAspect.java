@@ -49,7 +49,8 @@ public class TccTransactionAspect implements InitializingBean {
     private MethodTccCompensateEndpointRegistry methodTccCompensateEndpointRegistry;
 
     @Pointcut(value = "@annotation(walker.common.annotation.TccTransaction)")
-    private void tccTransactionPointcut() { }
+    private void tccTransactionPointcut() {
+    }
 
     @Around(value = "@annotation(tcc)")
     public Object doAround(TccTransaction tcc, ProceedingJoinPoint pjp) throws Throwable {
@@ -78,6 +79,7 @@ public class TccTransactionAspect implements InitializingBean {
             throw ex;
         }
     }
+
     private void prepareCompensate(WalkerContext tccContext, TccTransaction tcc, String serviceName, ProceedingJoinPoint pjp) {
         try {
             MethodTccCompensateEndpointRegistry.TccCompensateEndpointContainer tccCompensateEndpointContainer = methodTccCompensateEndpointRegistry.getTccCompensateContainer(serviceName);

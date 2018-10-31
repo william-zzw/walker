@@ -8,7 +8,8 @@ public class TccJsonUtils {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    private TccJsonUtils() {}
+    private TccJsonUtils() {
+    }
 
     public static <T> String parse(T obj) {
         try {

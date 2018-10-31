@@ -9,7 +9,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Data
 public class WalkerContext {
 
-    public WalkerContext(){}
+    public WalkerContext() {
+    }
 
     public WalkerContext(String masterGid) {
         this.masterGid = masterGid;
@@ -29,7 +30,13 @@ public class WalkerContext {
         depth.decrementAndGet();
     }
 
-    private Throwable exception ;
+    private Throwable exception;
 
     private long startTime = System.currentTimeMillis();
+
+    public String getCurrentBranchGid() {
+        String currentBranchGid = this.getBranchGids().get(this.getDepth().intValue());
+        return currentBranchGid;
+    }
+
 }

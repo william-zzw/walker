@@ -1,6 +1,6 @@
 package walker.common.context;
 
-public class NamedThreadLocal<T> extends InheritableThreadLocal<T>{
+public class NamedThreadLocal<T> extends InheritableThreadLocal<T> {
 
     private String name;
 

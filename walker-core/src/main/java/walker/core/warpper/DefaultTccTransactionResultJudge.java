@@ -3,7 +3,7 @@ package walker.core.warpper;
 import walker.protocol.WalkerCode;
 import walker.protocol.WalkerResult;
 
-public class DefaultTccTransactionResultJudge implements TccTransactionResultJudge{
+public class DefaultTccTransactionResultJudge implements TccTransactionResultJudge {
 
     @Override
     public boolean ok(Object anyThing) {

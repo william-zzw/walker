@@ -13,8 +13,9 @@ public class WalkerContextlManager {
         }
         return TCC_CONTEXT_HOLDER.get();
     }
+
     public static void clear() {
-         TCC_CONTEXT_HOLDER.remove();
+        TCC_CONTEXT_HOLDER.remove();
     }
 
     public static WalkerContext getTccContext() {

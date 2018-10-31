@@ -22,5 +22,5 @@
 		file:/data/config/tcc_coordinator/prod.properties"
                                   system-properties-mode="ENVIRONMENT"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
-	
+
 </beans>

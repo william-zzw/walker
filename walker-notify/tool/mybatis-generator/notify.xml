@@ -32,10 +32,11 @@
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="walker.application.notify.domain.repository" targetProject="../../src/main/java">
+                             targetPackage="walker.application.notify.domain.repository"
+                             targetProject="../../src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-        
-        <table tableName="log_compensate_statement" domainObjectName="LogCompensateStatement" /> 
+
+        <table tableName="log_compensate_statement" domainObjectName="LogCompensateStatement"/>
     </context>
 </generatorConfiguration>

@@ -18,10 +18,12 @@ public class GracefulShutdownTomcat implements TomcatConnectorCustomizer, Applic
     private final Logger log = LoggerFactory.getLogger(GracefulShutdownTomcat.class);
     private volatile Connector connector;
     private final int waitTime = 30;
+
     @Override
     public void customize(Connector connector) {
         this.connector = connector;
     }
+
     @Override
     public void onApplicationEvent(ContextClosedEvent contextClosedEvent) {
         this.connector.pause();

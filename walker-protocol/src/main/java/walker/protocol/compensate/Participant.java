@@ -10,26 +10,27 @@ import java.io.Serializable;
 @Setter
 @Getter
 @ToString
-public class Participant implements Serializable{
+public class Participant implements Serializable {
 
     private String globalTransactionGid;
-    
+
     private String branchTransactionGid;
-    
+
     private String url;
-    
+
     private Object requestBody;
-    
+
     private String callback;
-    
-    public Participant() {}
-    
-    public static Participant create(String globalGid, String branchGid , String url, Object requestBody, String callback) {
+
+    public Participant() {
+    }
+
+    public static Participant create(String globalGid, String branchGid, String url, Object requestBody, String callback) {
         return new Participant(globalGid, branchGid, url, requestBody, callback);
     }
-    
+
     public Participant(String globalTransactionGid, String branchTransactionGid, String url, Object requestBody,
-            String callback) {
+                       String callback) {
         super();
         this.globalTransactionGid = globalTransactionGid;
         this.branchTransactionGid = branchTransactionGid;

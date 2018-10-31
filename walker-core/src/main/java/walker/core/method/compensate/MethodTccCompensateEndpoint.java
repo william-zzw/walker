@@ -22,7 +22,7 @@ public class MethodTccCompensateEndpoint {
     private String[] commitMethodArgs;
 
     private Method cancelMethod;
-    private String cancelMethodName =  StringUtils.EMPTY;
+    private String cancelMethodName = StringUtils.EMPTY;
     private Class<?>[] cancelParameterTypes;
     private String[] cancelMethodArgs;
 

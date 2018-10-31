@@ -50,7 +50,7 @@ public class NotifyDataSourceConfig {
         shardingRuleConfig.getBindingTableGroups().add("t_order");
         Properties properties = new Properties();
         //打开真实SQL打印
-        properties.setProperty("sql.show","true");
+        properties.setProperty("sql.show", "true");
         return ShardingDataSourceFactory.createDataSource(createDataSourceMap(), shardingRuleConfig, new HashMap<String, Object>(), properties);
     }
 
@@ -73,7 +73,7 @@ public class NotifyDataSourceConfig {
         dataSource.setPassword(password);
         dataSource.setMaximumPoolSize(10);
         Map<String, DataSource> result = new HashMap<>();
-        result.put("notify_ds",dataSource);
+        result.put("notify_ds", dataSource);
         return result;
     }
 

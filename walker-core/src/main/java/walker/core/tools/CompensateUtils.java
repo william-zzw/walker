@@ -13,9 +13,9 @@ import org.springframework.expression.EvaluationContext;
 public class CompensateUtils {
 
     public static Object[] getValue(JoinPoint joinPoint, String[] condition) {
-        return getValue(joinPoint.getTarget(),  joinPoint.getArgs(),  joinPoint.getTarget().getClass(), ((MethodSignature) joinPoint.getSignature()).getMethod(),  condition);
+        return getValue(joinPoint.getTarget(), joinPoint.getArgs(), joinPoint.getTarget().getClass(), ((MethodSignature) joinPoint.getSignature()).getMethod(), condition);
     }
-    
+
     private static Object[] getValue(Object object, Object[] args, Class<?> clazz, Method method, String[] condition) {
         if (args == null) {
             return null;
@@ -24,12 +24,12 @@ public class CompensateUtils {
         EvaluationContext evaluationContext = evaluator.createEvaluationContext(object, clazz, method, args);
         AnnotatedElementKey methodKey = new AnnotatedElementKey(method, clazz);
         Object[] values = new Object[condition.length];
-        for(int i=0;i<condition.length;i++) {
+        for (int i = 0; i < condition.length; i++) {
             values[i] = evaluator.condition(condition[i], methodKey, evaluationContext, Object.class);
         }
         return values;
     }
-    
+
     public static Class<?> findTargetClass(Object proxy) throws Exception {
         if (AopUtils.isAopProxy(proxy)) {
             AdvisedSupport advised = getAdvisedSupport(proxy);
@@ -53,5 +53,5 @@ public class CompensateUtils {
         advised.setAccessible(true);
         return (AdvisedSupport) advised.get(dynamicAdvisedInterceptor);
     }
-    
+
 }

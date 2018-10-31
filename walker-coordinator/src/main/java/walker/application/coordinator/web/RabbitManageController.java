@@ -17,6 +17,7 @@ public class RabbitManageController {
 
     /**
      * 重置指定队列消费者数量
+     *
      * @param queueName
      * @param concurrentConsumers
      * @return
@@ -28,6 +29,7 @@ public class RabbitManageController {
 
     /**
      * 重启对消息队列的监听
+     *
      * @param queueName
      * @return
      */
@@ -38,6 +40,7 @@ public class RabbitManageController {
 
     /**
      * 停止对消息队列的监听
+     *
      * @param queueName
      * @return
      */
@@ -48,6 +51,7 @@ public class RabbitManageController {
 
     /**
      * 获取所有消息队列对应的消费者
+     *
      * @return
      */
     @GetMapping("statAllMessageQueueDetail")

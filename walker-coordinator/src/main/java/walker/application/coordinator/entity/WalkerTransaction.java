@@ -78,7 +78,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.id
      *
      * @return the value of walker_transaction.id
-     *
      * @mbggenerated
      */
     public Long getId() {
@@ -90,7 +89,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.id
      *
      * @param id the value for walker_transaction.id
-     *
      * @mbggenerated
      */
     public void setId(Long id) {
@@ -102,7 +100,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.gmt_create
      *
      * @return the value of walker_transaction.gmt_create
-     *
      * @mbggenerated
      */
     public Integer getGmtCreate() {
@@ -114,7 +111,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.gmt_create
      *
      * @param gmtCreate the value for walker_transaction.gmt_create
-     *
      * @mbggenerated
      */
     public void setGmtCreate(Integer gmtCreate) {
@@ -126,7 +122,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.gmt_modified
      *
      * @return the value of walker_transaction.gmt_modified
-     *
      * @mbggenerated
      */
     public Integer getGmtModified() {
@@ -138,7 +133,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.gmt_modified
      *
      * @param gmtModified the value for walker_transaction.gmt_modified
-     *
      * @mbggenerated
      */
     public void setGmtModified(Integer gmtModified) {
@@ -150,7 +144,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.app_id
      *
      * @return the value of walker_transaction.app_id
-     *
      * @mbggenerated
      */
     public String getAppId() {
@@ -162,7 +155,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.app_id
      *
      * @param appId the value for walker_transaction.app_id
-     *
      * @mbggenerated
      */
     public void setAppId(String appId) {
@@ -174,7 +166,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.master_gid
      *
      * @return the value of walker_transaction.master_gid
-     *
      * @mbggenerated
      */
     public String getMasterGid() {
@@ -186,7 +177,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.master_gid
      *
      * @param masterGid the value for walker_transaction.master_gid
-     *
      * @mbggenerated
      */
     public void setMasterGid(String masterGid) {
@@ -198,7 +188,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.branch_gid
      *
      * @return the value of walker_transaction.branch_gid
-     *
      * @mbggenerated
      */
     public String getBranchGid() {
@@ -210,7 +199,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.branch_gid
      *
      * @param branchGid the value for walker_transaction.branch_gid
-     *
      * @mbggenerated
      */
     public void setBranchGid(String branchGid) {
@@ -222,7 +210,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.is_declare
      *
      * @return the value of walker_transaction.is_declare
-     *
      * @mbggenerated
      */
     public Boolean getIsDeclare() {
@@ -234,7 +221,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.is_declare
      *
      * @param isDeclare the value for walker_transaction.is_declare
-     *
      * @mbggenerated
      */
     public void setIsDeclare(Boolean isDeclare) {
@@ -246,7 +232,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.status
      *
      * @return the value of walker_transaction.status
-     *
      * @mbggenerated
      */
     public Integer getStatus() {
@@ -258,7 +243,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.status
      *
      * @param status the value for walker_transaction.status
-     *
      * @mbggenerated
      */
     public void setStatus(Integer status) {
@@ -270,7 +254,6 @@ public class WalkerTransaction {
      * This method returns the value of the database column walker_transaction.is_deleted
      *
      * @return the value of walker_transaction.is_deleted
-     *
      * @mbggenerated
      */
     public Integer getIsDeleted() {
@@ -282,7 +265,6 @@ public class WalkerTransaction {
      * This method sets the value of the database column walker_transaction.is_deleted
      *
      * @param isDeleted the value for walker_transaction.is_deleted
-     *
      * @mbggenerated
      */
     public void setIsDeleted(Integer isDeleted) {

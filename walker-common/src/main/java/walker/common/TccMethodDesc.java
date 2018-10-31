@@ -5,10 +5,11 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class TccMethodDesc implements Serializable {
 
-    public TccMethodDesc() {}
+    public TccMethodDesc() {
+    }
 
     public TccMethodDesc(String commitMethodName, String[] commitMethodArgs, String cancelMethodName,
-        String[] cancelMethodArgs) {
+                         String[] cancelMethodArgs) {
         super();
         this.commitMethodName = commitMethodName;
         this.commitMethodArgs = commitMethodArgs;
@@ -16,7 +17,8 @@ public class TccMethodDesc implements Serializable {
         this.cancelMethodArgs = cancelMethodArgs;
     }
 
-    private String commitMethodName;;
+    private String commitMethodName;
+    ;
     private String[] commitMethodArgs;
 
     private String cancelMethodName;
