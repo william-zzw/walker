@@ -1,10 +1,9 @@
-package walker.application.notify.mapper;
+package walker.application.coordinator.mapper;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.Param;
-import walker.application.notify.entity.WalkerNotify;
-import walker.application.notify.entity.WalkerNotifyExample;
+import walker.application.coordinator.entity.WalkerNotify;
+import walker.application.coordinator.entity.WalkerNotifyExample;
 
 public interface WalkerNotifyMapper {
     /**

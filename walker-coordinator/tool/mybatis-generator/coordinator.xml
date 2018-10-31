@@ -37,5 +37,6 @@
         </javaClientGenerator>
 
         <table tableName="walker_transaction" domainObjectName="WalkerTransaction"/>
+        <table tableName="walker_notify" domainObjectName="WalkerNotify"/>
     </context>
 </generatorConfiguration>

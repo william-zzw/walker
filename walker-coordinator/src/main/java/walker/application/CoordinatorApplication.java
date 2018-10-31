@@ -12,11 +12,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.event.ContextClosedEvent;
+import walker.application.coordinator.config.CoordinatorConfiguration;
 import walker.application.infrastructure.hook.GracefulShutdownTomcat;
 
 @SpringBootApplication
 @ImportResource(locations = {"classpath:/spring.xml"})
-@Import(AppConfiguration.class)
+@Import(CoordinatorConfiguration.class)
 @Slf4j
 public class CoordinatorApplication {
 

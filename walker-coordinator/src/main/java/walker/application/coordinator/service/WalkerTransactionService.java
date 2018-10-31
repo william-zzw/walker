@@ -1,6 +1,5 @@
 package walker.application.coordinator.service;
 
-import walker.application.coordinator.entity.WalkerTransaction;
 import walker.protocol.message.command.TransactionCommand;
 
 public interface WalkerTransactionService {

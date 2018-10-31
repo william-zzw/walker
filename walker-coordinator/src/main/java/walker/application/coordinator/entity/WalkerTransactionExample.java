@@ -644,63 +644,123 @@ public class WalkerTransactionExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNull() {
-            addCriterion("status is null");
+        public Criteria andTxStatusIsNull() {
+            addCriterion("tx_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIsNotNull() {
-            addCriterion("status is not null");
+        public Criteria andTxStatusIsNotNull() {
+            addCriterion("tx_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Integer value) {
-            addCriterion("status =", value, "status");
+        public Criteria andTxStatusEqualTo(Integer value) {
+            addCriterion("tx_status =", value, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Integer value) {
-            addCriterion("status <>", value, "status");
+        public Criteria andTxStatusNotEqualTo(Integer value) {
+            addCriterion("tx_status <>", value, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Integer value) {
-            addCriterion("status >", value, "status");
+        public Criteria andTxStatusGreaterThan(Integer value) {
+            addCriterion("tx_status >", value, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
-            addCriterion("status >=", value, "status");
+        public Criteria andTxStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("tx_status >=", value, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Integer value) {
-            addCriterion("status <", value, "status");
+        public Criteria andTxStatusLessThan(Integer value) {
+            addCriterion("tx_status <", value, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Integer value) {
-            addCriterion("status <=", value, "status");
+        public Criteria andTxStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("tx_status <=", value, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Integer> values) {
-            addCriterion("status in", values, "status");
+        public Criteria andTxStatusIn(List<Integer> values) {
+            addCriterion("tx_status in", values, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Integer> values) {
-            addCriterion("status not in", values, "status");
+        public Criteria andTxStatusNotIn(List<Integer> values) {
+            addCriterion("tx_status not in", values, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Integer value1, Integer value2) {
-            addCriterion("status between", value1, value2, "status");
+        public Criteria andTxStatusBetween(Integer value1, Integer value2) {
+            addCriterion("tx_status between", value1, value2, "txStatus");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
-            addCriterion("status not between", value1, value2, "status");
+        public Criteria andTxStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("tx_status not between", value1, value2, "txStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionIsNull() {
+            addCriterion("row_version is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionIsNotNull() {
+            addCriterion("row_version is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionEqualTo(Integer value) {
+            addCriterion("row_version =", value, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionNotEqualTo(Integer value) {
+            addCriterion("row_version <>", value, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionGreaterThan(Integer value) {
+            addCriterion("row_version >", value, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionGreaterThanOrEqualTo(Integer value) {
+            addCriterion("row_version >=", value, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionLessThan(Integer value) {
+            addCriterion("row_version <", value, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionLessThanOrEqualTo(Integer value) {
+            addCriterion("row_version <=", value, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionIn(List<Integer> values) {
+            addCriterion("row_version in", values, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionNotIn(List<Integer> values) {
+            addCriterion("row_version not in", values, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionBetween(Integer value1, Integer value2) {
+            addCriterion("row_version between", value1, value2, "rowVersion");
+            return (Criteria) this;
+        }
+
+        public Criteria andRowVersionNotBetween(Integer value1, Integer value2) {
+            addCriterion("row_version not between", value1, value2, "rowVersion");
             return (Criteria) this;
         }
 
@@ -714,52 +774,52 @@ public class WalkerTransactionExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedEqualTo(Integer value) {
+        public Criteria andIsDeletedEqualTo(Boolean value) {
             addCriterion("is_deleted =", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotEqualTo(Integer value) {
+        public Criteria andIsDeletedNotEqualTo(Boolean value) {
             addCriterion("is_deleted <>", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThan(Integer value) {
+        public Criteria andIsDeletedGreaterThan(Boolean value) {
             addCriterion("is_deleted >", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIsDeletedGreaterThanOrEqualTo(Boolean value) {
             addCriterion("is_deleted >=", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThan(Integer value) {
+        public Criteria andIsDeletedLessThan(Boolean value) {
             addCriterion("is_deleted <", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedLessThanOrEqualTo(Integer value) {
+        public Criteria andIsDeletedLessThanOrEqualTo(Boolean value) {
             addCriterion("is_deleted <=", value, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedIn(List<Integer> values) {
+        public Criteria andIsDeletedIn(List<Boolean> values) {
             addCriterion("is_deleted in", values, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotIn(List<Integer> values) {
+        public Criteria andIsDeletedNotIn(List<Boolean> values) {
             addCriterion("is_deleted not in", values, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedBetween(Integer value1, Integer value2) {
+        public Criteria andIsDeletedBetween(Boolean value1, Boolean value2) {
             addCriterion("is_deleted between", value1, value2, "isDeleted");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeletedNotBetween(Integer value1, Integer value2) {
+        public Criteria andIsDeletedNotBetween(Boolean value1, Boolean value2) {
             addCriterion("is_deleted not between", value1, value2, "isDeleted");
             return (Criteria) this;
         }

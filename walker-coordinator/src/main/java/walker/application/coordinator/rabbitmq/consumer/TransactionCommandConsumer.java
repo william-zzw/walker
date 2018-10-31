@@ -9,7 +9,6 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import walker.application.coordinator.CoordinatorConst;
-import walker.application.coordinator.entity.WalkerTransaction;
 import walker.application.coordinator.service.WalkerTransactionService;
 import walker.common.util.Utility;
 import walker.protocol.message.RabbitConst;
