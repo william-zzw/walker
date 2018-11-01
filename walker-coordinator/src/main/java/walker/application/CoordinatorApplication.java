@@ -1,6 +1,5 @@
 package walker.application;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,6 +11,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.event.ContextClosedEvent;
+
+import lombok.extern.slf4j.Slf4j;
 import walker.application.coordinator.config.CoordinatorConfiguration;
 import walker.application.infrastructure.hook.GracefulShutdownTomcat;
 

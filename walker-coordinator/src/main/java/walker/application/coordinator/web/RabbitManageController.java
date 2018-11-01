@@ -1,12 +1,13 @@
 package walker.application.coordinator.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import walker.rabbitmq.control.MessageListenerContainerController;
 
-import java.util.List;
+import walker.rabbitmq.control.MessageListenerContainerController;
 
 @RestController
 @RequestMapping("/rabbit/manage")

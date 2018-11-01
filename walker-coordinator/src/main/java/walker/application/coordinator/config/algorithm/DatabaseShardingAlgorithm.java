@@ -1,9 +1,9 @@
 package walker.application.coordinator.config.algorithm;
 
+import java.util.Collection;
+
 import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
 import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
-
-import java.util.Collection;
 
 /**
  * Copyright: Copyright (C) github.com/devpage, Inc. All rights reserved. <p>

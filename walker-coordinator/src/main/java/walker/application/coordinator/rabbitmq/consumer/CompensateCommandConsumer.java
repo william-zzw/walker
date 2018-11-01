@@ -1,6 +1,11 @@
 package walker.application.coordinator.rabbitmq.consumer;
 
-import lombok.extern.slf4j.Slf4j;
+import static walker.application.coordinator.CoordinatorConst.TransactionTxStatus.WAITE_ROLLBACK;
+
+import java.time.Instant;
+
+import javax.annotation.Resource;
+
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
@@ -8,29 +13,41 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import walker.application.coordinator.service.WalkerTransactionService;
+import org.springframework.transaction.annotation.Transactional;
+
+import lombok.extern.slf4j.Slf4j;
+import walker.application.coordinator.CoordinatorConst;
+import walker.application.coordinator.entity.WalkerNotify;
+import walker.application.coordinator.entity.WalkerNotifyExample;
+import walker.application.coordinator.entity.WalkerTransaction;
+import walker.application.coordinator.entity.WalkerTransactionExample;
+import walker.application.coordinator.mapper.WalkerNotifyMapper;
+import walker.application.coordinator.mapper.WalkerTransactionMapper;
+import walker.common.util.GsonUtils;
+import walker.protocol.compensate.Participant;
 import walker.protocol.message.RabbitConst;
 import walker.protocol.message.WalkerMessage;
 import walker.protocol.message.command.CompensateCommand;
 import walker.rabbitmq.WalkerMessageUtils;
 
-import javax.annotation.Resource;
-
+/**
+ * @author SONG
+ */
 @Service
 @Slf4j
 public class CompensateCommandConsumer {
 
     @Resource
-    private WalkerTransactionService walkerTransactionService;
+    private WalkerNotifyMapper walkerNotifyMapper;
+
+    @Resource
+    private WalkerTransactionMapper walkerTransactionMapper;
 
     @RabbitListener(
             admin = RabbitConst.RABBITMQ_ADMIN_NAME,
             bindings = @QueueBinding(
-                    //1.test.demo.send:队列名,2.true:是否长期有效,3.false:是否自动删除
                     value = @Queue(value = RabbitConst.WALKER_COMPENSATE_QUEUE, durable = "true", autoDelete = "false", exclusive = "false"),
-                    //1.default.topic交换器名称(默认值),2.true:是否长期有效,3.topic:类型是topic
                     exchange = @Exchange(value = RabbitConst.EXCHANGE_NAME, durable = "true", type = RabbitConst.EXCHANGE_TYPE_TOPIC),
-                    //test2.send:路由的名称,ProducerConfig 里面 绑定的路由名称(xxxx.to(exchange).with("test2.send")))
                     key = RabbitConst.ROUTE_TO_REPORT_COMPENSATE)
     )
     public void handlerAmqpMessage(Message message, com.rabbitmq.client.Channel channel) throws Exception {
@@ -44,26 +61,80 @@ public class CompensateCommandConsumer {
                     handleBroken(WalkerMessageUtils.toCommand(walkerMessage, CompensateCommand.CompensateBroken.class));
                     break;
             }
-            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false); // false只确认当前一个消息收到，true确认所有consumer获得的消息
+            channel.basicAck(message.getMessageProperties().getDeliveryTag(), false);
         }
     }
 
     @Async
-    public void handleCommit(CompensateCommand.CompensateCommit toCommand) {
-        /*
-        app_id
-        master_gid
-        branch_gid
-        notify_url
-        notify_body
-
-         */
-
+    @Transactional(rollbackFor = {Exception.class})
+    public void handleCommit(CompensateCommand.CompensateCommit command) {
+        Instant now = Instant.now();
+        long unixTimestamp = now.getEpochSecond();
+        WalkerNotify commitNotify = recovery(unixTimestamp, command, CoordinatorConst.NotifyType.COMMIT);
+        WalkerNotify rollbackNotify = recovery(unixTimestamp, command, CoordinatorConst.NotifyType.ROLLBACK);
+        walkerNotifyMapper.insertSelective(commitNotify);
+        walkerNotifyMapper.insertSelective(rollbackNotify);
     }
 
     @Async
-    public void handleBroken(CompensateCommand.CompensateBroken toCommand) {
+    @Transactional(rollbackFor = {Exception.class})
+    public void handleBroken(CompensateCommand.CompensateBroken command) {
+        Instant now = Instant.now();
+        long unixTimestamp = now.getEpochSecond();
+        // just update transaction TxStatus to WAITE_ROLLBACK
+        markTxStatusBroken(unixTimestamp, command);
+        // active NotifyType.ROLLBACK notify_status to WAITING_EXECUTE
+        prepareNotifyCancel(unixTimestamp, command);
+    }
 
+    private void markTxStatusBroken(long unixTimestamp, CompensateCommand.CompensateBroken command) {
+        log.info("get broken report , reporter appId={}, masterGid={}, branchGid={}, cause={}", command.getAppId(), command.getMasterGid(), command.getBranchGid(), command.getException());
+        WalkerTransactionExample example = new WalkerTransactionExample();
+        example.createCriteria().andAppIdEqualTo(command.getAppId()).andMasterGidEqualTo(command.getMasterGid());
+        WalkerTransaction target = new WalkerTransaction();
+        target.setTxStatus(WAITE_ROLLBACK);
+        target.setGmtModified(unixTimestamp);
+        walkerTransactionMapper.updateByExampleSelective(target, example);
+    }
+
+    private void prepareNotifyCancel(long unixTimestamp, CompensateCommand.CompensateBroken command) {
+        WalkerNotifyExample example = new WalkerNotifyExample();
+        example.createCriteria()
+                .andAppIdEqualTo(command.getAppId())
+                .andMasterGidEqualTo(command.getMasterGid())
+                .andNotifyTypeEqualTo(CoordinatorConst.NotifyType.ROLLBACK.ordinal())
+                .andNotifyStatusEqualTo(CoordinatorConst.NotifyStatus.RECORDED);
+        WalkerNotify target = new WalkerNotify();
+        target.setNotifyStatus(CoordinatorConst.NotifyStatus.WAITING_EXECUTE);
+        target.setGmtModified(unixTimestamp);
+        walkerNotifyMapper.updateByExampleSelective(target, example);
+    }
+
+    private WalkerNotify recovery(long unixTimestamp, CompensateCommand.CompensateCommit command, CoordinatorConst.NotifyType notifyType) {
+        WalkerNotify notify = new WalkerNotify();
+        notify.setGmtCreate(unixTimestamp);
+        notify.setGmtModified(unixTimestamp);
+        notify.setAppId(command.getAppId());
+        notify.setMasterGid(command.getMasterGid());
+        notify.setBranchGid(command.getBranchGid());
+        notify.setNotifyType(notifyType.ordinal());
+        notify.setRetryNum(0);
+        notify.setNotifyStatus(CoordinatorConst.NotifyStatus.RECORDED);
+        switch (notifyType) {
+            case COMMIT:
+                Participant commitParticipant =  command.getCommitParticipant();
+                notify.setNotifyUrl(commitParticipant.getUrl());
+                notify.setNotifyBody(GsonUtils.toJson(commitParticipant.getRequestBody()));
+                break;
+            case ROLLBACK:
+                Participant cancelParticipant =  command.getCancelParticipant();
+                notify.setNotifyUrl(cancelParticipant.getUrl());
+                notify.setNotifyBody(GsonUtils.toJson(cancelParticipant.getRequestBody()));
+                break;
+             default:
+                 break;
+        }
+        return notify;
     }
 
 }

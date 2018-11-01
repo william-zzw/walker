@@ -264,52 +264,52 @@ public class WalkerNotifyExample {
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateEqualTo(Integer value) {
+        public Criteria andGmtCreateEqualTo(Long value) {
             addCriterion("gmt_create =", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateNotEqualTo(Integer value) {
+        public Criteria andGmtCreateNotEqualTo(Long value) {
             addCriterion("gmt_create <>", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateGreaterThan(Integer value) {
+        public Criteria andGmtCreateGreaterThan(Long value) {
             addCriterion("gmt_create >", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateGreaterThanOrEqualTo(Integer value) {
+        public Criteria andGmtCreateGreaterThanOrEqualTo(Long value) {
             addCriterion("gmt_create >=", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateLessThan(Integer value) {
+        public Criteria andGmtCreateLessThan(Long value) {
             addCriterion("gmt_create <", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateLessThanOrEqualTo(Integer value) {
+        public Criteria andGmtCreateLessThanOrEqualTo(Long value) {
             addCriterion("gmt_create <=", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateIn(List<Integer> values) {
+        public Criteria andGmtCreateIn(List<Long> values) {
             addCriterion("gmt_create in", values, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateNotIn(List<Integer> values) {
+        public Criteria andGmtCreateNotIn(List<Long> values) {
             addCriterion("gmt_create not in", values, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateBetween(Integer value1, Integer value2) {
+        public Criteria andGmtCreateBetween(Long value1, Long value2) {
             addCriterion("gmt_create between", value1, value2, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateNotBetween(Integer value1, Integer value2) {
+        public Criteria andGmtCreateNotBetween(Long value1, Long value2) {
             addCriterion("gmt_create not between", value1, value2, "gmtCreate");
             return (Criteria) this;
         }
@@ -324,52 +324,52 @@ public class WalkerNotifyExample {
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedEqualTo(Integer value) {
+        public Criteria andGmtModifiedEqualTo(Long value) {
             addCriterion("gmt_modified =", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedNotEqualTo(Integer value) {
+        public Criteria andGmtModifiedNotEqualTo(Long value) {
             addCriterion("gmt_modified <>", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedGreaterThan(Integer value) {
+        public Criteria andGmtModifiedGreaterThan(Long value) {
             addCriterion("gmt_modified >", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedGreaterThanOrEqualTo(Integer value) {
+        public Criteria andGmtModifiedGreaterThanOrEqualTo(Long value) {
             addCriterion("gmt_modified >=", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedLessThan(Integer value) {
+        public Criteria andGmtModifiedLessThan(Long value) {
             addCriterion("gmt_modified <", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedLessThanOrEqualTo(Integer value) {
+        public Criteria andGmtModifiedLessThanOrEqualTo(Long value) {
             addCriterion("gmt_modified <=", value, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedIn(List<Integer> values) {
+        public Criteria andGmtModifiedIn(List<Long> values) {
             addCriterion("gmt_modified in", values, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedNotIn(List<Integer> values) {
+        public Criteria andGmtModifiedNotIn(List<Long> values) {
             addCriterion("gmt_modified not in", values, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedBetween(Integer value1, Integer value2) {
+        public Criteria andGmtModifiedBetween(Long value1, Long value2) {
             addCriterion("gmt_modified between", value1, value2, "gmtModified");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifiedNotBetween(Integer value1, Integer value2) {
+        public Criteria andGmtModifiedNotBetween(Long value1, Long value2) {
             addCriterion("gmt_modified not between", value1, value2, "gmtModified");
             return (Criteria) this;
         }

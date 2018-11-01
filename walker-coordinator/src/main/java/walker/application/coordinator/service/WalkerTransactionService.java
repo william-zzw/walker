@@ -1,12 +1,21 @@
 package walker.application.coordinator.service;
 
+import walker.application.coordinator.entity.WalkerTransaction;
 import walker.protocol.message.command.TransactionCommand;
 
+/**
+ * @author SONG
+ */
 public interface WalkerTransactionService {
 
-    int add(WalkerTransaction transaction);
+    /**
+     * 声明一个事务
+     * @param transaction
+     * @return
+     */
+    int publish(WalkerTransaction transaction);
 
-    void doCommit(TransactionCommand.TransactionCommit toCommand);
+    void postCommit(TransactionCommand.TransactionCommit toCommand);
 
-    void doBroken(TransactionCommand.TransactionBroken toCommand);
+    void postCancel(TransactionCommand.TransactionBroken toCommand);
 }

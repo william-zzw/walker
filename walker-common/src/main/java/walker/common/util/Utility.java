@@ -2,14 +2,17 @@ package walker.common.util;
 
 
 import java.time.Instant;
-import java.time.temporal.ChronoField;
 import java.util.UUID;
 
 
+/**
+ * @author SONG
+ */
 public class Utility {
 
-    public static int getTimestamp() {
-        return (int) Instant.now().getLong(ChronoField.INSTANT_SECONDS);
+
+    public static long unix_timestamp(){
+        return Instant.now().getEpochSecond();
     }
 
     public static String randomOrderId() {
