@@ -37,23 +37,23 @@ public class CoordinatorConst {
         /**
          * 待通知
          */
-        public static final int WAITING_EXECUTE = 0;
+        public static final int WAITING_EXECUTE = 1;
         /**
          * 通知中
          */
-        public static final int NOTIFYING = 0;
+        public static final int NOTIFYING = 2;
         /**
          * 通知成功
          */
-        public static final int NOTIFY_SUCCESS = 0;
+        public static final int NOTIFY_SUCCESS = 3;
         /**
          * 通知失败
          */
-        public static final int NOTIFY_FAILURE = 0;
+        public static final int NOTIFY_FAILURE = 4;
         /**
          * 通知异常(网络连接失败等)
          */
-        public static final int NOTIFY_EXCEPTION = 0;
+        public static final int NOTIFY_EXCEPTION = 5;
 
     }
 }
