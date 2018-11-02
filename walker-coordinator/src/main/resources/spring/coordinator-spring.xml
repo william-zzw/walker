@@ -12,10 +12,11 @@
 
     <context:property-placeholder ignore-resource-not-found="true" ignore-unresolvable="false" file-encoding="UTF-8"
                                   location="classpath*:properties/application.properties,
-		                          file:/data/config/tcc_coordinator/prod.properties"
+                                 classpath*:properties/sharding-jdbc-ds.properties,
+		                          file:/data/config/walker_coordinator/prod.properties"
                                   system-properties-mode="ENVIRONMENT"/>
     <aop:aspectj-autoproxy/>
 
-    <import resource="classpath:spring/sharding-databases.xml"/>
+    <import resource="classpath:/spring/sharding-databases.xml"/>
 
 </beans>

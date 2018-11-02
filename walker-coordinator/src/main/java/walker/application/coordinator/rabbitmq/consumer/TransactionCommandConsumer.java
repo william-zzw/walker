@@ -10,6 +10,8 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import com.google.common.base.Preconditions;
+
 import lombok.extern.slf4j.Slf4j;
 import walker.application.coordinator.CoordinatorConst;
 import walker.application.coordinator.entity.WalkerTransaction;
@@ -23,6 +25,7 @@ import walker.rabbitmq.WalkerMessageUtils;
 /**
  * https://www.jb51.net/article/131708.htm https://blog.csdn.net/huanghaopeng62/article/details/54618341
  * https://blog.csdn.net/csdnofzhc/article/details/79422858
+ * 
  * @author SONG
  */
 @Service
@@ -49,13 +52,15 @@ public class TransactionCommandConsumer {
                     handlePublish(
                         WalkerMessageUtils.toCommand(walkerMessage, TransactionCommand.TransactionPublish.class));
                     break;
+                case TransactionCommand.COMMIT:
+                    handleCommit(
+                        WalkerMessageUtils.toCommand(walkerMessage, TransactionCommand.TransactionCommit.class));
+                    break;
                 case TransactionCommand.BROKEN:
                     handleBroken(
                         WalkerMessageUtils.toCommand(walkerMessage, TransactionCommand.TransactionBroken.class));
                     break;
-                case TransactionCommand.COMMIT:
-                    handleCommit(
-                        WalkerMessageUtils.toCommand(walkerMessage, TransactionCommand.TransactionCommit.class));
+                default:
                     break;
             }
             // false只确认当前一个消息收到，true确认所有consumer获得的消息
@@ -70,21 +75,50 @@ public class TransactionCommandConsumer {
         walkerTransaction.setMasterGid(toCommand.getMasterGid());
         walkerTransaction.setBranchGid(toCommand.getBranchGid());
         walkerTransaction.setIsDeclare(false);
-        int timestamp = Utility.getTimestamp();
+        long timestamp = Utility.unix_timestamp();
         walkerTransaction.setGmtCreate(timestamp);
         walkerTransaction.setGmtModified(timestamp);
         walkerTransaction.setTxStatus(CoordinatorConst.TransactionTxStatus.RECORDED);
         walkerTransactionService.publish(walkerTransaction);
     }
 
+    /**
+     * 万一这里把 commit 消息丢了呢？
+     *
+     * 所以master 在提交的时候, 本地要加一个log_transaction_statement事务状态记录表, 提交到该表的记录说明都是已启动了 提交全局事务的
+     *
+     * @param toCommand
+     */
     @Async
     public void handleCommit(TransactionCommand.TransactionCommit toCommand) {
-        walkerTransactionService.postCommit(toCommand);
+        String appId = toCommand.getAppId();
+        Preconditions.checkNotNull(appId, "process commit command ,appId can't be null");
+        String masterGid = toCommand.getMasterGid();
+        Preconditions.checkNotNull(masterGid, "process commit command ,masterGid can't be null");
+        String branchGid = toCommand.getBranchGid();
+        Preconditions.checkNotNull(branchGid, "process commit command ,branchGid can't be null");
+        if (masterGid.equals(branchGid)) {
+            log.info("[主事务提交], appId:{}, masterGid:{}", toCommand.getAppId(), toCommand.getMasterGid());
+            walkerTransactionService.startWalkerTransactionCommitProcess(toCommand);
+        } else {
+            log.info("[分支事务提交], appId:{}, masterGid:{}, branchGid:{}", toCommand.getAppId(), toCommand.getMasterGid(), toCommand.getBranchGid());
+            walkerTransactionService.updateSingleStatusToPrepareCommit(toCommand);
+        }
     }
 
     @Async
     public void handleBroken(TransactionCommand.TransactionBroken toCommand) {
-        walkerTransactionService.postCancel(toCommand);
+        String appId = toCommand.getAppId();
+        Preconditions.checkNotNull(appId, "process cancel command ,appId can't be null");
+        String masterGid = toCommand.getMasterGid();
+        Preconditions.checkNotNull(masterGid, "process cancel command ,masterGid can't be null");
+        String branchGid = toCommand.getBranchGid();
+        Preconditions.checkNotNull(branchGid, "process cancel command ,branchGid can't be null");
+
+        if (!masterGid.equals(branchGid)) {
+            walkerTransactionService.updateSingleStatusToPrepareCancel(toCommand);
+        }
+        walkerTransactionService.startWalkerTransactionCancelProcess(toCommand);
     }
 
 }

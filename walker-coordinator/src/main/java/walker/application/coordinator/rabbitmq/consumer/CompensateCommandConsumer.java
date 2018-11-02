@@ -1,6 +1,6 @@
 package walker.application.coordinator.rabbitmq.consumer;
 
-import static walker.application.coordinator.CoordinatorConst.TransactionTxStatus.WAITE_ROLLBACK;
+import static walker.application.coordinator.CoordinatorConst.TransactionTxStatus.*;
 
 import java.time.Instant;
 
@@ -71,7 +71,7 @@ public class CompensateCommandConsumer {
         Instant now = Instant.now();
         long unixTimestamp = now.getEpochSecond();
         WalkerNotify commitNotify = recovery(unixTimestamp, command, CoordinatorConst.NotifyType.COMMIT);
-        WalkerNotify rollbackNotify = recovery(unixTimestamp, command, CoordinatorConst.NotifyType.ROLLBACK);
+        WalkerNotify rollbackNotify = recovery(unixTimestamp, command, CoordinatorConst.NotifyType.CANCEL);
         walkerNotifyMapper.insertSelective(commitNotify);
         walkerNotifyMapper.insertSelective(rollbackNotify);
     }
@@ -92,7 +92,7 @@ public class CompensateCommandConsumer {
         WalkerTransactionExample example = new WalkerTransactionExample();
         example.createCriteria().andAppIdEqualTo(command.getAppId()).andMasterGidEqualTo(command.getMasterGid());
         WalkerTransaction target = new WalkerTransaction();
-        target.setTxStatus(WAITE_ROLLBACK);
+        target.setTxStatus(WAITE_CANCEL);
         target.setGmtModified(unixTimestamp);
         walkerTransactionMapper.updateByExampleSelective(target, example);
     }
@@ -102,7 +102,7 @@ public class CompensateCommandConsumer {
         example.createCriteria()
                 .andAppIdEqualTo(command.getAppId())
                 .andMasterGidEqualTo(command.getMasterGid())
-                .andNotifyTypeEqualTo(CoordinatorConst.NotifyType.ROLLBACK.ordinal())
+                .andNotifyTypeEqualTo(CoordinatorConst.NotifyType.CANCEL.ordinal())
                 .andNotifyStatusEqualTo(CoordinatorConst.NotifyStatus.RECORDED);
         WalkerNotify target = new WalkerNotify();
         target.setNotifyStatus(CoordinatorConst.NotifyStatus.WAITING_EXECUTE);
@@ -126,7 +126,7 @@ public class CompensateCommandConsumer {
                 notify.setNotifyUrl(commitParticipant.getUrl());
                 notify.setNotifyBody(GsonUtils.toJson(commitParticipant.getRequestBody()));
                 break;
-            case ROLLBACK:
+            case CANCEL:
                 Participant cancelParticipant =  command.getCancelParticipant();
                 notify.setNotifyUrl(cancelParticipant.getUrl());
                 notify.setNotifyBody(GsonUtils.toJson(cancelParticipant.getRequestBody()));

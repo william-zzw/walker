@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:reg="http://www.dangdang.com/schema/ddframe/reg"
+       xmlns:job="http://www.dangdang.com/schema/ddframe/job"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                        http://www.springframework.org/schema/beans/spring-beans.xsd 
+                        http://www.springframework.org/schema/tx 
+                        http://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xs
+                        http://www.dangdang.com/schema/ddframe/reg
+                        http://www.dangdang.com/schema/ddframe/reg/reg.xsd
+                        http://www.dangdang.com/schema/ddframe/job
+                        http://www.dangdang.com/schema/ddframe/job/job.xsd">
+
+    <reg:zookeeper id="regCenter" server-lists="${serverLists}" namespace="${namespace}"
+                   base-sleep-time-milliseconds="${baseSleepTimeMilliseconds}"
+                   max-sleep-time-milliseconds="${maxSleepTimeMilliseconds}"
+                   max-retries="${maxRetries}" />
+
+    <job:dataflow id="fetch_waite_status_job" class="walker.application.notify.job.FetchWaiteStatusJob"
+                  registry-center-ref="regCenter" cron="${fetch_waite_status_job.cron}"
+                  sharding-total-count="${fetch_waite_status_job.shardingTotalCount}"
+                  sharding-item-parameters="${fetch_waite_status_job.shardingItemParameters}"
+                  streaming-process="${fetch_waite_status_job.streamingProcess}"
+                  monitor-execution="${fetch_waite_status_job.monitorExecution}" failover="${fetch_waite_status_job.failover}"
+                  max-time-diff-seconds="${fetch_waite_status_job.maxTimeDiffSeconds}"  description="${fetch_waite_status_job.description}"
+                  disabled="${fetch_waite_status_job.disabled}" overwrite="${fetch_waite_status_job.overwrite}" />
+
+</beans>

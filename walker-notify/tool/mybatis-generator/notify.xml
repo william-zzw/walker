@@ -13,14 +13,14 @@
         </commentGenerator>
 
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost/notify" userId="root" password="123456">
+                        connectionURL="jdbc:mysql://localhost/walker_coordinator" userId="root" password="123456">
         </jdbcConnection>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="walker.application.notify.domain.entity"
+        <javaModelGenerator targetPackage="walker.application.notify.entity"
                             targetProject="../../src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
@@ -32,11 +32,11 @@
         </sqlMapGenerator>
 
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="walker.application.notify.domain.repository"
-                             targetProject="../../src/main/java">
+                             targetPackage="walker.application.notify.mapper" targetProject="../../src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table tableName="log_compensate_statement" domainObjectName="LogCompensateStatement"/>
+        <table tableName="walker_transaction" domainObjectName="WalkerTransaction"/>
+        <table tableName="walker_notify" domainObjectName="WalkerNotify"/>
     </context>
 </generatorConfiguration>

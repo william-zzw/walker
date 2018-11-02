@@ -106,7 +106,7 @@
             <artifactId>pagehelper</artifactId>
             <version>5.1.7</version>
         </dependency>
-        <!-- sharding-jdbc -->
+        <!-- schedule-jdbc -->
         <dependency>
             <groupId>io.shardingsphere</groupId>
             <artifactId>sharding-jdbc-core</artifactId>
@@ -127,7 +127,6 @@
             <artifactId>sharding-jdbc-orchestration-spring-namespace</artifactId>
             <version>${sharding-sphere.version}</version>
         </dependency>
-
     </dependencies>
 
 

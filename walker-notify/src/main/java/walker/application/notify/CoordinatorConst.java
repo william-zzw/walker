@@ -1,4 +1,4 @@
-package walker.application.coordinator;
+package walker.application.notify;
 
 /**
  * @author SONG

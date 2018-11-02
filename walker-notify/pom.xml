@@ -28,6 +28,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>walker</groupId>
+            <artifactId>walker-common</artifactId>
+            <version>0.0.1</version>
+        </dependency>
         <!-- jdbc -->
         <dependency>
             <groupId>com.zaxxer</groupId>
@@ -47,17 +52,6 @@
             <artifactId>mybatis</artifactId>
             <version>3.4.1</version>
         </dependency>
-
-        <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-jdbc-core</artifactId>
-            <version>3.0.0.M4</version>
-        </dependency>
-        <dependency>
-            <groupId>io.shardingsphere</groupId>
-            <artifactId>sharding-core</artifactId>
-            <version>3.0.0.M4</version>
-        </dependency>
         <!-- import elastic-job lite core -->
         <dependency>
             <groupId>com.dangdang</groupId>
@@ -70,7 +64,17 @@
             <artifactId>elastic-job-lite-spring</artifactId>
             <version>${elastic-job-lite.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>4.1.4</version>
+        </dependency>
     </dependencies>
 
     <build>

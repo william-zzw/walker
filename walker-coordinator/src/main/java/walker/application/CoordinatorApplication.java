@@ -17,7 +17,7 @@ import walker.application.coordinator.config.CoordinatorConfiguration;
 import walker.application.infrastructure.hook.GracefulShutdownTomcat;
 
 @SpringBootApplication
-@ImportResource(locations = {"classpath:/spring.xml"})
+@ImportResource(locations = {"classpath:/spring/coordinator-spring.xml"})
 @Import(CoordinatorConfiguration.class)
 @Slf4j
 public class CoordinatorApplication {

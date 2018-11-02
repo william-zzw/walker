@@ -15,7 +15,26 @@ public interface WalkerTransactionService {
      */
     int publish(WalkerTransaction transaction);
 
-    void postCommit(TransactionCommand.TransactionCommit toCommand);
+    /**
+     * 更新分支事务的状态为待提交
+     * @param toCommand
+     */
+    void updateSingleStatusToPrepareCommit(TransactionCommand.TransactionCommit toCommand);
 
-    void postCancel(TransactionCommand.TransactionBroken toCommand);
+    /**开始了 commit 流程
+     * @param toCommand
+     */
+    void startWalkerTransactionCommitProcess(TransactionCommand.TransactionCommit toCommand);
+
+    /**
+     * 更新分支事务的状态为待取消
+     * @param toCommand
+     */
+    void updateSingleStatusToPrepareCancel(TransactionCommand.TransactionBroken toCommand);
+
+    /**
+     * 开始了 cancel 流程
+     * @param toCommand
+     */
+    void startWalkerTransactionCancelProcess(TransactionCommand.TransactionBroken toCommand);
 }

@@ -18,9 +18,13 @@
         http://www.springframework.org/schema/task/spring-task.xsd">
 
     <context:property-placeholder ignore-resource-not-found="true" ignore-unresolvable="false" file-encoding="UTF-8"
-                                  location="classpath*:properties/ds.properties,
-		file:/data/config/tcc_coordinator/prod.properties"
+                                  location="classpath*:properties/application.properties,
+                                  classpath*:properties/sharding-jdbc-ds.properties,
+                                  classpath*:properties/sharding-job.properties, classpath*:properties/reg.properties,
+		                          file:/data/config/walker_notify/prod.properties"
                                   system-properties-mode="ENVIRONMENT"/>
     <aop:aspectj-autoproxy proxy-target-class="true"/>
 
+    <import resource="classpath:/spring/sharding-databases.xml"/>
+    <import resource="classpath:/spring/sharding-job.xml"/>
 </beans>

@@ -5,6 +5,8 @@ import java.util.Collection;
 import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
 import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
 
+import static walker.application.coordinator.CoordinatorConst.NOTIFY_SHARDING_COUNT;
+
 /**
  * Copyright: Copyright (C) github.com/devpage, Inc. All rights reserved. <p>
  *
@@ -16,7 +18,7 @@ public class NotifyTableShardingAlgorithm implements PreciseShardingAlgorithm<St
     @Override
     public String doSharding(final Collection<String> availableTargetNames, final PreciseShardingValue<String> shardingValue) {
         for (String each : availableTargetNames) {
-            if (each.endsWith(System.identityHashCode(shardingValue) % 10 + "")) {
+            if (each.endsWith(System.identityHashCode(shardingValue) % NOTIFY_SHARDING_COUNT + "")) {
                 return each;
             }
         }
