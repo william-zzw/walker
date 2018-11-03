@@ -1,9 +1,9 @@
 package walker.application.notify.mapper;
 
 import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
-import walker.application.notify.entity.WalkerNotify;
-import walker.application.notify.entity.WalkerNotifyExample;
+
 import walker.application.notify.entity.WalkerTransaction;
 import walker.application.notify.entity.WalkerTransactionExample;
 

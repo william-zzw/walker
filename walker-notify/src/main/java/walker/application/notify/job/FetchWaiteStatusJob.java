@@ -1,5 +1,7 @@
 package walker.application.notify.job;
 
+import static walker.application.notify.CoordinatorConst.NOTIFY_SHARDING_COUNT;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -21,8 +23,6 @@ import walker.application.notify.entity.WalkerTransactionExample;
 import walker.application.notify.mapper.WalkerNotifyMapper;
 import walker.application.notify.mapper.WalkerTransactionMapper;
 import walker.common.util.Utility;
-
-import static walker.application.notify.CoordinatorConst.NOTIFY_SHARDING_COUNT;
 
 /**
  * Copyright: Copyright (C) github.com/devpage, Inc. All rights reserved.
