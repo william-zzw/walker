@@ -35,7 +35,7 @@ public class SpringTransactionService {
                 mode = CompensateMode.ASYNC,
                 commitMethodName = "diy_commit", commitMethodArgs = {"#yourBusinessModel.gid", "#yourBusinessModel.boolParam"},
                 cancelMethodName = "diy_cancel", cancelMethodArgs = {"#yourBusinessModel.doubleParam", "#yourBusinessModel.longParam", "#p0.gid"})
-    @Transactional
+    @Transactional(rollbackFor = {Exception.class})
     public void aroundWithWalkerTransactionManagement(YourBusinessModel yourBusinessModel) {
 
         /**
@@ -44,7 +44,7 @@ public class SpringTransactionService {
         aroundWithSpringTransactionManagement(yourBusinessModel);
     }
 
-    @Transactional
+    @Transactional(rollbackFor = {Exception.class})
     public void aroundWithSpringTransactionManagement(YourBusinessModel yourBusinessModel) {
 
         /**
@@ -63,7 +63,7 @@ public class SpringTransactionService {
             mode = CompensateMode.ASYNC,
             commitMethodName = "diy_commit", commitMethodArgs = {"#gid", "#b"},
             cancelMethodName = "diy_cancel", cancelMethodArgs = {"#paramOfDouble", "#typeOfLong", "#gid"})
-    @Transactional
+    @Transactional(rollbackFor = {Exception.class})
     public void withWalkerTransactionManagement(String gid, boolean b, double paramOfDouble, long typeOfLong) {
         /**
          * do you understand ?
