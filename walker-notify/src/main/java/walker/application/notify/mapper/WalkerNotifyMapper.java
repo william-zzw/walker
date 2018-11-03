@@ -94,5 +94,9 @@ public interface WalkerNotifyMapper {
      */
     int updateByPrimaryKey(WalkerNotify record);
 
+    List<WalkerNotify> selectIndexedTableByExample(@Param("tableIndex")Integer tableIndex, WalkerNotifyExample example);
+
     int updateIndexedTableByExampleSelective(@Param("tableIndex")Integer tableIndex, @Param("record") WalkerNotify record, @Param("example") WalkerNotifyExample example);
+
+    int updateIndexedTableByPrimaryKeySelective(@Param("tableIndex")Integer tableIndex, @Param("record") WalkerNotify record);
 }

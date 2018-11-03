@@ -16,13 +16,9 @@ public class NotifyScheduleConst {
     public static final int INTERNAL_MASTER_FETCH_WAITE_STATUS_SIZE = 5;
 
     /**
-     * 并发处理notify 表中 推送类型为commit 待通知的 TPS
+     * 并发处理notify 表中 推送TPS
      */
-    public static final int INTERNAL_NOTIFY_FETCH_COMMIT_SIZE = 10;
-    /**
-     * 并发处理notify 表中 推送类型为cancel 待通知的 TPS
-     */
-    public static final int INTERNAL_NOTIFY_FETCH_CANCEL_SIZE = 10;
+    public static final int INTERNAL_NOTIFY_FETCH_SIZE = 10;
 
     /**
      *  处理 commit 推送的 分片数量

@@ -430,4 +430,59 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
+
+  <select id="selectIndexedTableByExample" resultMap="BaseResultMap" parameterType="map" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from walker_notify_${tableIndex,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <update id="updateIndexedTableByPrimaryKeySelective" parameterType="map" >
+    update walker_notify_${tableIndex,jdbcType=INTEGER}
+    <set >
+        <if test="record.gmtCreate != null" >
+          gmt_create = #{record.gmtCreate,jdbcType=BIGINT},
+        </if>
+        <if test="record.gmtModified != null" >
+          gmt_modified = #{record.gmtModified,jdbcType=BIGINT},
+        </if>
+        <if test="record.appId != null" >
+          app_id = #{record.appId,jdbcType=VARCHAR},
+        </if>
+        <if test="record.masterGid != null" >
+          master_gid = #{record.masterGid,jdbcType=VARCHAR},
+        </if>
+        <if test="record.branchGid != null" >
+          branch_gid = #{record.branchGid,jdbcType=VARCHAR},
+        </if>
+        <if test="record.notifyType != null" >
+          notify_type = #{record.notifyType,jdbcType=INTEGER},
+        </if>
+        <if test="record.notifyUrl != null" >
+          notify_url = #{record.notifyUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="record.notifyBody != null" >
+          notify_body = #{record.notifyBody,jdbcType=VARCHAR},
+        </if>
+        <if test="record.notifyStatus != null" >
+          notify_status = #{record.notifyStatus,jdbcType=INTEGER},
+        </if>
+        <if test="record.retryNum != null" >
+          retry_num = #{record.retryNum,jdbcType=INTEGER},
+        </if>
+        <if test="record.isDeleted != null" >
+          is_deleted = #{record.isDeleted,jdbcType=BIT},
+        </if>
+    </set>
+    where id = #{record.id,jdbcType=BIGINT}
+  </update>
 </mapper>

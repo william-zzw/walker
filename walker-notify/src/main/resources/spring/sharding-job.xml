@@ -30,4 +30,12 @@
                   max-time-diff-seconds="${fetch_waite_status_job.maxTimeDiffSeconds}"  description="${fetch_waite_status_job.description}"
                   disabled="${fetch_waite_status_job.disabled}" overwrite="${fetch_waite_status_job.overwrite}" />
 
+    <job:dataflow id="stream_notify_job" class="walker.application.notify.job.StreamNotifyJob"
+                  registry-center-ref="regCenter" cron="${stream_notify_job.cron}"
+                  sharding-total-count="${stream_notify_job.shardingTotalCount}"
+                  sharding-item-parameters="${stream_notify_job.shardingItemParameters}"
+                  streaming-process="${stream_notify_job.streamingProcess}"
+                  monitor-execution="${stream_notify_job.monitorExecution}" failover="${stream_notify_job.failover}"
+                  max-time-diff-seconds="${stream_notify_job.maxTimeDiffSeconds}"  description="${stream_notify_job.description}"
+                  disabled="${stream_notify_job.disabled}" overwrite="${stream_notify_job.overwrite}" />
 </beans>

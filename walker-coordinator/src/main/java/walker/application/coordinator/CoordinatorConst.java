@@ -6,6 +6,7 @@ package walker.application.coordinator;
 public class CoordinatorConst {
 
     public static final int DATA_SOURCE_SHARDING_COUNT = 2;
+    public static final int TRANSACTION_SHARDING_COUNT = 10;
     public static final int NOTIFY_SHARDING_COUNT = 10;
 
     public static final int PROCESS_RECENT_DAY = 3;

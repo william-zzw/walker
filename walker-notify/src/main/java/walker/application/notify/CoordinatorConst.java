@@ -6,10 +6,16 @@ package walker.application.notify;
 public class CoordinatorConst {
 
     public static final int DATA_SOURCE_SHARDING_COUNT = 2;
+    public static final int TRANSACTION_SHARDING_COUNT = 10;
     public static final int NOTIFY_SHARDING_COUNT = 10;
 
     public static final int PROCESS_RECENT_DAY = 3;
     public static final int SECONDS_OF_DAY = 86400;
+
+    public static final String NOTIFY_SUCCESS_KEY = "returnCode";
+    public static final String NOTIFY_SUCCESS_CODE = "1024";
+
+    public static final int NOTIFY_RETRY_MAX = 5;
 
     public static class TransactionTxStatus {
         /**
